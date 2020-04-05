@@ -8,6 +8,15 @@ const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
 
+  const filterResultsByRating = (rangeStart, rangeEnd) => {
+    // price === '$' || '$$' | '$$$'
+    return results.filter(result => {
+      return result.rating >= rangeStart && result.rating < rangeEnd;
+    });
+  };
+
+  console.log("all results: ", results);
+
   return (
     <View>
       <SearchBar
@@ -21,9 +30,19 @@ const SearchScreen = () => {
       <Text style={styles.textStyles}>
         We have found {results.length} results
       </Text>
-      <ResultsLits title="Cost Effective" />
-      <ResultsLits title="Bit Pricier" />
-      <ResultsLits title="Big Spender" />
+      <ResultsLits results={filterResultsByRating(3, 4)} title="Meh..." />
+      <ResultsLits
+        results={filterResultsByRating(4, 4.5)}
+        title="Its not crap"
+      />
+      <ResultsLits
+        results={filterResultsByRating(4.5, 5)}
+        title="Mmmmmm, yummy"
+      />
+      <ResultsLits
+        results={filterResultsByRating(5, 6)}
+        title="OMFG, mouthgasm!"
+      />
     </View>
   );
 };
