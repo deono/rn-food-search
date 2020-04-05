@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from "../api/yelp";
 import useResults from "../hooks/useResults";
+import ResultsLits from "../components/ResultsList";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
@@ -21,6 +21,9 @@ const SearchScreen = () => {
       <Text style={styles.textStyles}>
         We have found {results.length} results
       </Text>
+      <ResultsLits title="Cost Effective" />
+      <ResultsLits title="Bit Pricier" />
+      <ResultsLits title="Big Spender" />
     </View>
   );
 };
