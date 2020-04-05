@@ -15,8 +15,6 @@ const SearchScreen = () => {
     });
   };
 
-  console.log("all results: ", results);
-
   return (
     <>
       <SearchBar
@@ -27,9 +25,6 @@ const SearchScreen = () => {
       {errorMessage ? (
         <Text style={styles.errorTextStyle}>{errorMessage}</Text>
       ) : null}
-      <Text style={styles.textStyles}>
-        We have found {results.length} results
-      </Text>
       <ScrollView>
         <ResultsLits results={filterResultsByRating(3, 4)} title="Meh..." />
         <ResultsLits
