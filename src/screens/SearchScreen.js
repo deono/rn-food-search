@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsLits from "../components/ResultsList";
@@ -18,7 +18,7 @@ const SearchScreen = () => {
   console.log("all results: ", results);
 
   return (
-    <View>
+    <>
       <SearchBar
         term={term}
         onTermSubmit={() => searchApi(term)}
@@ -30,24 +30,29 @@ const SearchScreen = () => {
       <Text style={styles.textStyles}>
         We have found {results.length} results
       </Text>
-      <ResultsLits results={filterResultsByRating(3, 4)} title="Meh..." />
-      <ResultsLits
-        results={filterResultsByRating(4, 4.5)}
-        title="Its not crap"
-      />
-      <ResultsLits
-        results={filterResultsByRating(4.5, 5)}
-        title="Mmmmmm, yummy"
-      />
-      <ResultsLits
-        results={filterResultsByRating(5, 6)}
-        title="OMFG, mouthgasm!"
-      />
-    </View>
+      <ScrollView>
+        <ResultsLits results={filterResultsByRating(3, 4)} title="Meh..." />
+        <ResultsLits
+          results={filterResultsByRating(4, 4.5)}
+          title="Its not crap"
+        />
+        <ResultsLits
+          results={filterResultsByRating(4.5, 5)}
+          title="Mmmmmm, yummy"
+        />
+        <ResultsLits
+          results={filterResultsByRating(5, 6)}
+          title="OMFG, mouthgasm!"
+        />
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   textStyles: {
     fontSize: 16,
     marginHorizontal: 15

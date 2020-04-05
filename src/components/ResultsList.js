@@ -5,9 +5,10 @@ import ResultsDetail from "./ResultsDetail";
 const ResultsList = ({ title, results }) => {
   console.log(title, results);
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         horizontal
         data={results}
         keyExtractor={result => {
@@ -27,7 +28,11 @@ const styles = StyleSheet.create({
   // styles
   titleStyle: {
     fontSize: 18,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginLeft: 15
+  },
+  container: {
+    marginBottom: 10
   }
 });
 
